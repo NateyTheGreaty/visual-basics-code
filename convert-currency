@@ -1,0 +1,13 @@
+Public Class frmConvCurre
+    Const Euros As Decimal = 0.91D
+    Const CanDollars As Decimal = 1.33D
+    Const Pesos As Decimal = 18.56D
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles btnConvert.Click
+        If IsNumeric(txtUSD.Text) Then
+            Dim USD As Decimal = Convert.ToDecimal(txtUSD.Text)
+            lblEur.Text = "€" + (Euros * USD).ToString
+            lblCad.Text = "$" + (CanDollars * USD).ToString() + "¢"
+            lblMxn.Text = "$" + (Pesos * USD).ToString() + "¢"
+        End If
+    End Sub
+End Class
