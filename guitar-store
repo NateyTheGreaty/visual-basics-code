@@ -1,0 +1,33 @@
+Public Class frmGuitarStore
+    Private Sub btnClassical_Click(sender As Object, e As EventArgs) Handles btnClassical.Click
+        btnBuy.Enabled = True
+        picClassical.Visible = True
+        picElectric.Visible = False
+        picSteel.Visible = False
+    End Sub
+    Private Sub btnElectric_Click(sender As Object, e As EventArgs) Handles btnElectric.Click
+        btnBuy.Enabled = True
+        picClassical.Visible = False
+        picElectric.Visible = True
+        picSteel.Visible = False
+    End Sub
+    Private Sub btnSteel_Click(sender As Object, e As EventArgs) Handles btnSteel.Click
+        btnBuy.Enabled = True
+        picClassical.Visible = False
+        picElectric.Visible = False
+        picSteel.Visible = True
+    End Sub
+
+    Private Sub btnBuy_Click(sender As Object, e As EventArgs) Handles btnBuy.Click
+        btnElectric.Enabled = False
+        btnClassical.Enabled = False
+        btnSteel.Enabled = False
+        MsgBox("Thank you for purchasing a guitar.", MsgBoxStyle.OkOnly, "Thank you")
+        btnExit.Enabled = True
+        btnBuy.Enabled = False
+    End Sub
+
+    Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
+        End
+    End Sub
+End Class
