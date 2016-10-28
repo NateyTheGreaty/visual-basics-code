@@ -1,0 +1,29 @@
+'Binford Tools
+'Nate
+Public Class Form1
+
+
+
+    Private Sub btnRentalFee_Click(sender As Object, e As EventArgs) Handles btnRentalFee.Click
+        Dim decHalfDay As Decimal = 24.99
+        Dim decFullDay As Decimal = 48.99
+        Dim decTwoDay As Decimal = 60.99
+        Dim decRentalCost As Decimal
+
+
+        If radHalfDay.Checked Then
+            decRentalCost = decHalfDay
+        ElseIf radFullDay.Checked Then
+            decRentalCost = decFullDay
+        ElseIf radTwoDay.Checked Then
+            decRentalCost = decTwoDay
+        End If
+        lblTotalCost.Text = decRentalCost.ToString("C")
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        radHalfDay.Checked = True
+        lblTotalCost.Text = "$000.00"
+    End Sub
+
+End Class
