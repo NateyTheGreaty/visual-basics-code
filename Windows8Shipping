@@ -1,0 +1,59 @@
+Public Class frmWin8AccShip
+
+
+    Private Sub btnCalculate_Click(sender As Object, e As EventArgs) Handles btnCalculate.Click
+        Dim decUpCharge As Decimal = 1D
+        Dim decOverweight As Decimal = 1.25D
+        Dim decUsCost As Decimal = 6
+        Dim decOutsideUs As Decimal = 8D
+        Dim decWeight As Decimal
+        Dim decCalculation As Decimal
+        Dim TrueorFalse As Boolean = False
+        If IsNumeric(txtBox.Text) Then
+            decWeight = Convert.ToDecimal(txtBox.Text)
+            If decWeight > 0 Then
+                TrueorFalse = False
+                Select Case decWeight
+                    Case Is > 20
+                        MsgBox("Please Enter a valid weight, that is between 20 lbs and 0 lbs.", , "Input Error")
+                        txtBox.Clear()
+                        txtBox.Focus()
+                        rdUS.Checked = True
+                        TrueorFalse = True
+                        rdOvernight.Checked = False
+                        lblFee.Text = "$0000.00"
+                        decUpCharge = 0.0
+                    Case Is > 5
+                        If (TrueorFalse = False) Then
+                            decUpCharge = decOverweight
+                        End If
+                End Select
+                If rdUS.Checked Then
+                    decCalculation = decUsCost * decUpCharge
+                ElseIf rdLA.Checked Or rdC.Checked Then
+                    decCalculation = decOutsideUs * decUpCharge
+                End If
+                If rdOvernight.Checked Then
+                    decCalculation *= 2
+                End If
+                lblFee.Text = decCalculation.ToString("C")
+            End If
+        Else
+        MsgBox("Please enter a valid weight", , "Input Error")
+        txtBox.Clear()
+        txtBox.Focus()
+        rdUS.Checked = True
+        rdOvernight.Checked = False
+        lblFee.Text = "$0000.00"
+        End If
+    End Sub
+
+    Private Sub btnClear_Click(sender As Object, e As EventArgs) Handles btnClear.Click
+        txtBox.Clear()
+        txtBox.Focus()
+        rdUS.Checked = True
+        rdOvernight.Checked = False
+        lblFee.Text = "$0000.00"
+    End Sub
+
+End Class
