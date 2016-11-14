@@ -1,0 +1,68 @@
+Public Class frmPDND
+
+    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+        End
+    End Sub
+
+
+    Private Sub btnButton_Click(sender As Object, e As EventArgs) Handles btnButton.Click
+        Dim intDays As Integer
+        Dim intLoop As Integer = 0
+        Dim decPenny As Decimal = 0.01D
+        Dim decNickel As Decimal = 0.05D
+        Dim decTotal As Decimal = 0D
+
+        Dim strErrorNotNumber As String = "Sorry, please enter a number."
+        Dim strErrorBelowZero As String = "Sorry, please enter a number of days greater than zero."
+        Dim strErrorMaximumDays As String = "The maximum number of days is 22. Please reenter a number of day less than 22."
+
+        If IsNumeric(txtNumberOfDays.Text) Then
+            intDays = Convert.ToInt32(txtNumberOfDays.Text)
+            If intDays > 0 Then
+                If intDays <= 22 Then
+                    If rdPenny.Checked Then
+                        Do Until intLoop = intDays
+                            decTotal += (decPenny + decTotal)
+                            intLoop += 1
+                        Loop
+                        MsgBox("Your total pay is: " + decTotal.ToString("C") + " for " + txtNumberOfDays.Text + " days", , "Pennies")
+                    ElseIf rdNickel.Checked Then
+                        Do Until intLoop = intDays
+                            decTotal += (decNickel + decTotal)
+                            intLoop += 1
+                        Loop
+                        MsgBox("Your total pay is: " + decTotal.ToString("C") + " for " + txtNumberOfDays.Text + " days.", , "Nickels")
+                    End If
+                Else
+                    MsgBox(strErrorMaximumDays)
+                    txtNumberOfDays.Clear()
+                    txtNumberOfDays.Focus()
+                End If
+            Else
+                MsgBox(strErrorBelowZero)
+                txtNumberOfDays.Clear()
+                txtNumberOfDays.Focus()
+            End If
+        Else
+            MsgBox(strErrorNotNumber)
+            txtNumberOfDays.Clear()
+            txtNumberOfDays.Focus()
+
+        End If
+    End Sub
+
+    Private Sub ClearToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ClearToolStripMenuItem.Click
+        rdPenny.Checked = True
+        txtNumberOfDays.Clear()
+    End Sub
+
+    Private Sub rdPenny_CheckedChanged(sender As Object, e As EventArgs) Handles rdPenny.CheckedChanged
+        If rdPenny.Checked = True Then
+            PictureBox1.Visible = True
+            PictureBox2.Visible = False
+        Else
+            PictureBox1.Visible = False
+            PictureBox2.Visible = True
+        End If
+    End Sub
+End Class
